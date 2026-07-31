@@ -9,7 +9,7 @@
         SPDX-License-Identifier: MIT-CMU
         ]]></copyright>
 
-<interface name="org_kde_kwin_outputmanagement" version="4">
+<interface name="org_kde_kwin_outputmanagement" version="5">
     <description summary="configuration of server outputs through clients">
     This interface enables clients to set properties of output devices for screen
     configuration purposes via the server. To this end output devices are referenced
@@ -213,6 +213,25 @@
         <arg name="red" type="int" summary="red component"/>
         <arg name="green" type="int" summary="green component"/>
         <arg name="blue" type="int" summary="blue component"/>
+    </request>
+
+    <enum name="color_mode">
+        <description summary="describes color mode">
+            Supported color mode.
+        </description>
+        <entry name="native" value="0"/>
+        <entry name="photo" value="1"/>
+        <entry name="adobe" value="2"/>
+        <entry name="web" value="3"/>
+        <entry name="ebook" value="4"/>
+    </enum>
+
+    <request name="set_color_mode">
+        <description summary="set screen color mode">
+            Set ColorMode.
+        </description>
+        <arg name="outputdevice" type="object" interface="org_kde_kwin_outputdevice" summary="outputdevice color mode apply to"/>
+        <arg name="color_mode" type="uint" enum="color_mode"/>
     </request>
 
 </interface>
